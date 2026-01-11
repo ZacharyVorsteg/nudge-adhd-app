@@ -8,12 +8,8 @@ import { Button } from '@/components/ui/Button';
 export function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center px-4 overflow-hidden">
-      {/* Background gradient */}
+      {/* Background gradient - clean, focused */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-warm-50 to-sage-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" />
-
-      {/* Decorative circles */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary-200/30 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-sage-200/30 rounded-full blur-3xl" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Badge */}
