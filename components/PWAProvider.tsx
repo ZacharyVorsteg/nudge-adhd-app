@@ -18,11 +18,11 @@ export function PWAProvider({ children }: { children: React.ReactNode }) {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/sw.js')
-        .then((registration) => {
-          console.log('Service Worker registered:', registration.scope);
+        .then(() => {
+          // Service worker registered successfully
         })
-        .catch((error) => {
-          console.error('Service Worker registration failed:', error);
+        .catch(() => {
+          // Service worker registration failed - app still works without it
         });
     }
 

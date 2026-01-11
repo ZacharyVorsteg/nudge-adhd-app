@@ -51,14 +51,17 @@ export async function createPortalSession(customerId: string): Promise<string> {
   return session.url;
 }
 
+export interface WebhookResult {
+  type: string;
+  customerId?: string;
+  customerEmail?: string;
+  planType?: string;
+}
+
 export async function handleWebhookEvent(
   body: string,
   signature: string
-): Promise<{
-  type: string;
-  customerId?: string;
-  planType?: string;
-}> {
+): Promise<WebhookResult> {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 
   const event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
@@ -69,14 +72,24 @@ export async function handleWebhookEvent(
       return {
         type: 'checkout_completed',
         customerId: session.customer as string,
+        customerEmail: session.customer_email || session.customer_details?.email || undefined,
         planType: session.metadata?.planType,
       };
     }
     case 'customer.subscription.deleted': {
       const subscription = event.data.object as Stripe.Subscription;
+      // Get customer email from Stripe
+      let customerEmail: string | undefined;
+      if (subscription.customer) {
+        const customer = await stripe.customers.retrieve(subscription.customer as string);
+        if (customer && !customer.deleted && 'email' in customer) {
+          customerEmail = customer.email || undefined;
+        }
+      }
       return {
         type: 'subscription_canceled',
         customerId: subscription.customer as string,
+        customerEmail,
       };
     }
     default:

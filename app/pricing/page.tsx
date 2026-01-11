@@ -113,7 +113,6 @@ export default function PricingPage() {
       const { url, error } = await response.json();
 
       if (error) {
-        console.error('Checkout error:', error);
         toast.error('Checkout failed. Please try again.');
         return;
       }
@@ -121,8 +120,7 @@ export default function PricingPage() {
       if (url) {
         window.location.href = url;
       }
-    } catch (error) {
-      console.error('Failed to start checkout:', error);
+    } catch {
       toast.error('Checkout failed. Please try again.');
     } finally {
       setIsLoading(null);

@@ -16,8 +16,7 @@ export async function POST(request: NextRequest) {
     const portalUrl = await createPortalSession(customerId);
 
     return NextResponse.json({ url: portalUrl });
-  } catch (error) {
-    console.error('Portal error:', error);
+  } catch {
     return NextResponse.json(
       { error: 'Failed to create portal session' },
       { status: 500 }

@@ -11,7 +11,7 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    console.error('Application error:', error)
+    // Error tracked by boundary - could send to monitoring service
   }, [error])
 
   return (

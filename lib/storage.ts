@@ -24,8 +24,8 @@ export function saveTasks(tasks: Task[]): void {
   if (!isBrowser) return;
   try {
     localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify(tasks));
-  } catch (error) {
-    console.error('Failed to save tasks:', error);
+  } catch {
+    // Storage save failed - continue silently
   }
 }
 
@@ -98,8 +98,8 @@ export function savePreferences(preferences: UserPreferences): void {
   if (!isBrowser) return;
   try {
     localStorage.setItem(STORAGE_KEYS.PREFERENCES, JSON.stringify(preferences));
-  } catch (error) {
-    console.error('Failed to save preferences:', error);
+  } catch {
+    // Storage save failed - continue silently
   }
 }
 
@@ -127,8 +127,8 @@ export function saveTimerSession(session: TimerSession): TimerSession[] {
   sessions.push(session);
   try {
     localStorage.setItem(STORAGE_KEYS.TIMER_SESSIONS, JSON.stringify(sessions));
-  } catch (error) {
-    console.error('Failed to save timer session:', error);
+  } catch {
+    // Storage save failed - continue silently
   }
   return sessions;
 }

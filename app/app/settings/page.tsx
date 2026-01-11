@@ -60,8 +60,8 @@ export default function SettingsPage() {
       if (url) {
         window.location.href = url;
       }
-    } catch (error) {
-      console.error('Failed to open billing portal:', error);
+    } catch {
+      // Billing portal failed - ignore silently
     } finally {
       setIsManagingBilling(false);
     }
