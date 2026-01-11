@@ -18,33 +18,25 @@ export async function POST(request: NextRequest) {
     // Handle different event types
     switch (result.type) {
       case 'checkout_completed':
-        // In a real app, you would:
+        // TODO: Implement user subscription activation
         // 1. Look up the user by email or create a new user
-        // 2. Update their subscription status in your database
+        // 2. Update their subscription status in database
         // 3. Send a welcome email
-        console.log('Checkout completed:', {
-          customerId: result.customerId,
-          planType: result.planType,
-        });
         break;
 
       case 'subscription_canceled':
-        // In a real app, you would:
+        // TODO: Implement subscription cancellation
         // 1. Update the user's subscription status
         // 2. Send a cancellation confirmation email
-        console.log('Subscription canceled:', {
-          customerId: result.customerId,
-        });
         break;
 
       default:
-        // Log other events for debugging
-        console.log('Unhandled webhook event:', result.type);
+        // Unhandled event types are ignored
+        break;
     }
 
     return NextResponse.json({ received: true });
   } catch (error) {
-    console.error('Webhook error:', error);
     return NextResponse.json(
       { error: 'Webhook handler failed' },
       { status: 400 }
