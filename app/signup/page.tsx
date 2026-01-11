@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Sparkles, Mail, Lock, User, ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react'
-import { createClient } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/client'
 
 export default function SignupPage() {
   const router = useRouter()
@@ -57,11 +57,11 @@ export default function SignupPage() {
             Click the link in the email to complete your signup.
           </p>
           <Link
-            href="/app"
+            href="/login"
             className="inline-flex items-center text-purple-600 font-medium hover:text-purple-500"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
-            Continue to app
+            Back to login
           </Link>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function SignupPage() {
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
           <p className="mt-2 text-gray-600">
-            Optional - sync tasks and access Pro features
+            Sync tasks across devices and access Pro features
           </p>
         </div>
 
@@ -167,15 +167,6 @@ export default function SignupPage() {
           </p>
         </div>
 
-        <div className="mt-6 text-center">
-          <Link
-            href="/app"
-            className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900"
-          >
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            Continue without account
-          </Link>
-        </div>
       </div>
     </div>
   )

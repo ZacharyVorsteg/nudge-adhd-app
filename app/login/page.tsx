@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Sparkles, Mail, Lock, ArrowRight, ArrowLeft } from 'lucide-react'
-import { createClient } from '@/lib/supabase'
+import { Sparkles, Mail, Lock, ArrowRight } from 'lucide-react'
+import { createClient } from '@/lib/supabase/client'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -123,15 +123,6 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <div className="mt-6 text-center">
-          <Link
-            href="/app"
-            className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900"
-          >
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            Continue without account
-          </Link>
-        </div>
       </div>
     </div>
   )
