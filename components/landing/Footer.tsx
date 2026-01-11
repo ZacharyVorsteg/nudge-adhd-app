@@ -48,14 +48,14 @@ export function Footer() {
             <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors">
+                <Link href="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors">
+                <Link href="/terms" className="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="mailto:hello@nudge.app" className="text-gray-600 dark:text-gray-400 hover:text-primary-500 transition-colors">
