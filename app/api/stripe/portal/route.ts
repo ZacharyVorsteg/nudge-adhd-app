@@ -1,8 +1,16 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { createPortalSession } from '@/lib/stripe';
+import { checkRateLimit, getClientIdentifier, rateLimitResponse, RATE_LIMITS } from '@/lib/rate-limit';
 
-export async function POST() {
+export async function POST(request: NextRequest) {
+  // Rate limiting - expensive operation
+  const clientId = getClientIdentifier(request);
+  const rateLimit = checkRateLimit(clientId, 'stripe-portal', RATE_LIMITS.expensive);
+  if (!rateLimit.success) {
+    return rateLimitResponse(rateLimit);
+  }
+
   try {
     // Require authentication
     const supabase = await createClient();
